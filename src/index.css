@@ -1,0 +1,44 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Proxima Nova', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #a3e635;
+  color: #000;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a3e635; }
+
+/* Remove default button styles */
+button { background: none; border: none; cursor: pointer; }
+
+/* Ensure images don't overflow */
+img { max-width: 100%; display: block; }
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #a3e635;
+  outline-offset: 3px;
+}
