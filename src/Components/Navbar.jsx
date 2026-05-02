@@ -30,7 +30,6 @@ export const Navbar = () => {
     { name: "Home",    to: "/" },
     { name: "Story",   to: "/story" },
     { name: "Media",   to: "/media" },
-    { name: "Blogs",   to: "/blogs" },
     { name: "Contact", to: "/contact" },
   ];
 
@@ -331,13 +330,13 @@ export const Navbar = () => {
           </div>
 
           {/* Desktop CTA */}
-          <a
-            href="mailto:himanishbhattacharya@email.com"
+          <Link
+            to="/contact"
             className="nb__cta"
             id="navbar-book-btn"
           >
             Book a Session
-          </a>
+          </Link>
 
           {/* Hamburger — plain flex child, NEVER absolutely positioned */}
           <button
@@ -392,17 +391,20 @@ export const Navbar = () => {
               </motion.div>
             ))}
 
-            <motion.a
-              href="mailto:himanishbhattacharya@email.com"
-              className="nb__mobile-cta"
+            <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.38 }}
-              onClick={() => setOpen(false)}
-              id="mobile-book-btn"
             >
-              Book a Session
-            </motion.a>
+              <Link
+                to="/contact"
+                className="nb__mobile-cta"
+                onClick={() => setOpen(false)}
+                id="mobile-book-btn"
+              >
+                Book a Session
+              </Link>
+            </motion.div>
 
             <p className="nb__mobile-footer">
               Himanish Bhattacharya · Entrepreneur · Speaker · Creator

@@ -341,10 +341,11 @@ export default function MediaPage() {
           1. HERO
       ═══════════════════════════════════════════════════════════════ */}
       <section style={{
-        minHeight: "100vh", display: "flex", flexDirection: "column",
-        justifyContent: "center",
-        padding: isMobile ? "100px 20px 60px" : "0 8vw",
+        minHeight: "100vh", display: "flex",
+        flexDirection: isMobile ? "column" : "row",
+        alignItems: "stretch",
         position: "relative", overflow: "hidden",
+        background: "#0a0a0a",
       }}>
         {/* Large decorative background character */}
         <div style={{
@@ -358,7 +359,14 @@ export default function MediaPage() {
           ◆
         </div>
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 900 }}>
+        {/* Text column (left) */}
+        <div style={{
+          position: "relative", zIndex: 10,
+          width: isMobile ? "100%" : "54%",
+          minHeight: isMobile ? "auto" : "100vh",
+          display: "flex", flexDirection: "column", justifyContent: "center",
+          padding: isMobile ? "100px 20px 40px" : "100px 0 64px 8vw",
+        }}>
           <FadeIn delay={0}>
             <p style={S.eyebrow}>Media & Press</p>
           </FadeIn>
@@ -380,40 +388,70 @@ export default function MediaPage() {
             </p>
           </FadeIn>
         </div>
+
+        {/* Spotlight image — full-cover, desktop: absolute right, mobile: stacked below */}
+        {isMobile ? (
+          /* Mobile: stacked image below text */
+          <div style={{
+            position: "relative", width: "100%", height: "55vh",
+            overflow: "hidden",
+          }}>
+            <img
+              src="/Spotlight.jpeg"
+              alt="Himanish Bhattacharya in the spotlight"
+              style={{
+                width: "100%", height: "100%",
+                objectFit: "cover", objectPosition: "center top",
+                filter: "contrast(1.06) brightness(0.9) saturate(1.05)",
+                display: "block",
+              }}
+            />
+            {/* Top gradient blend */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "80px",
+              background: "linear-gradient(to bottom, #0a0a0a 0%, transparent 100%)", zIndex: 2 }} />
+            {/* Bottom gradient blend */}
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "100px",
+              background: "linear-gradient(to top, #0a0a0a 0%, transparent 100%)", zIndex: 2 }} />
+          </div>
+        ) : (
+          /* Desktop: absolute right, full-cover */
+          <div style={{
+            position: "absolute", top: 0, right: 0, bottom: 0,
+            width: "52%",
+            zIndex: 8, overflow: "hidden", pointerEvents: "none",
+          }}>
+            <img
+              src="/Spotlight.jpeg"
+              alt="Himanish Bhattacharya in the spotlight"
+              style={{
+                position: "absolute", inset: 0,
+                width: "100%", height: "100%",
+                objectFit: "cover", objectPosition: "center top",
+                filter: "contrast(1.06) brightness(0.9) saturate(1.05)",
+              }}
+            />
+            {/* Warm cinematic glow */}
+            <div style={{ position: "absolute", inset: 0,
+              background: "radial-gradient(ellipse 70% 60% at 55% 30%, rgba(255,195,80,0.10) 0%, transparent 70%)", zIndex: 2 }} />
+            {/* Left fade to blend with text */}
+            <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "55%",
+              background: "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.9) 25%, rgba(10,10,10,0.5) 55%, transparent 100%)", zIndex: 3 }} />
+            {/* Bottom fade */}
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "200px",
+              background: "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.6) 40%, transparent 100%)", zIndex: 3 }} />
+            {/* Top fade */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "120px",
+              background: "linear-gradient(to bottom, #0a0a0a 0%, transparent 100%)", zIndex: 3 }} />
+            {/* Vignette */}
+            <div style={{ position: "absolute", inset: 0,
+              background: "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(0,0,0,0.35) 100%)", zIndex: 4 }} />
+          </div>
+        )}
       </section>
 
       <div style={S.divider} />
 
-      {/* ═══════════════════════════════════════════════════════════════
-          2. STATS BAR
-      ═══════════════════════════════════════════════════════════════ */}
-      <section style={{ padding: isMobile ? "60px 20px" : "80px 8vw", background: "#030303" }}>
-        <div style={{ maxWidth: 1080, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
-              gap: isMobile ? "40px 24px" : 0,
-            }}>
-              {[
-                { value: "200", suffix: "+", label: "Events & Seminars" },
-                { value: "50", suffix: "K+", label: "People Reached" },
-                { value: "15", suffix: "+", label: "Media Features" },
-                { value: "5", suffix: "+", label: "Active Projects" },
-              ].map((stat, i) => (
-                <div key={i} style={{
-                  borderLeft: i > 0 && !isMobile ? "1px solid #111" : "none",
-                  padding: isMobile ? 0 : "0 40px",
-                }}>
-                  <StatCounter {...stat} />
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
 
-      <div style={S.divider} />
 
       {/* ═══════════════════════════════════════════════════════════════
           3. SEMINARS & EVENTS
@@ -487,61 +525,7 @@ export default function MediaPage() {
 
       <div style={S.divider} />
 
-      {/* ═══════════════════════════════════════════════════════════════
-          4. MEDIA COVERAGE — Newspapers, TV, Magazines
-      ═══════════════════════════════════════════════════════════════ */}
-      <section style={{ padding: isMobile ? "72px 20px" : "100px 8vw", background: "#030303" }}>
-        <div style={{ maxWidth: 1080, margin: "0 auto" }}>
-          <FadeIn>
-            <p style={S.eyebrow}>Press & Coverage</p>
-            <h2 style={{
-              ...S.h2,
-              fontSize: isMobile ? "clamp(2.4rem, 10vw, 3.5rem)" : "clamp(2.5rem, 4vw, 4rem)",
-              marginBottom: 20,
-            }}>
-              Making<br />
-              <span style={S.lime}>headlines.</span>
-            </h2>
-            <p style={{ ...S.body, maxWidth: 560, marginBottom: 60 }}>
-              When the work is authentic, the press takes notice. Featured in leading
-              newspapers, television channels, and magazines across India.
-            </p>
-          </FadeIn>
 
-          <div style={{ border: "1px solid #0f0f0f", overflow: "hidden" }}>
-            {MEDIA_COVERAGE.map((media, i) => (
-              <FadeIn key={i} delay={i * 0.04}>
-                <div className="media-card">
-                  <div style={{ flexShrink: 0, paddingTop: 2 }}>
-                    <span className={`media-badge media-badge--${media.type.toLowerCase()}`}>
-                      {media.type}
-                    </span>
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8, marginBottom: 6 }}>
-                      <h3 style={{
-                        fontFamily: "Proxima Nova, sans-serif", fontWeight: 900,
-                        fontSize: "clamp(0.95rem, 1.8vw, 1.15rem)", color: "#fff",
-                        textTransform: "uppercase", letterSpacing: "0.03em",
-                      }}>{media.outlet}</h3>
-                      <span style={{
-                        fontFamily: "Proxima Nova, sans-serif", fontWeight: 700,
-                        fontSize: "0.6rem", color: "#2a2a2a", letterSpacing: "0.15em",
-                      }}>{media.year}</span>
-                    </div>
-                    <p style={{
-                      fontSize: "0.85rem", color: "#555", lineHeight: 1.6,
-                      fontFamily: 'Proxima Nova, sans-serif',
-                    }}>{media.description}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div style={S.divider} />
 
       {/* ═══════════════════════════════════════════════════════════════
           5. PROJECTS & VENTURES
@@ -627,11 +611,36 @@ export default function MediaPage() {
             </h2>
           </FadeIn>
 
-          <div className="gallery-grid">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <FadeIn key={i} delay={i * 0.06}>
-                <div className="gallery-item">
-                  <ImgPlaceholder height={isMobile ? 180 : 280} label={`Event Photo ${i + 1}`} />
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: 16,
+          }}>
+            {[
+              { src: "/Newspaper.jpeg", alt: "Newspaper feature — Himanish Bhattacharya" },
+              { src: "/BNI.jpeg", alt: "BNI leadership event" },
+            ].map((img, i) => (
+              <FadeIn key={i} delay={i * 0.08}>
+                <div style={{
+                  position: "relative", overflow: "hidden",
+                  borderRadius: 0, background: "#050505",
+                  border: "1px solid #111",
+                }}>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    style={{
+                      width: "100%",
+                      height: isMobile ? 260 : 380,
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      display: "block",
+                      filter: "contrast(1.04) brightness(0.92)",
+                      transition: "transform 0.5s ease, filter 0.5s ease",
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.03)"; e.currentTarget.style.filter = "contrast(1.06) brightness(1)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.filter = "contrast(1.04) brightness(0.92)"; }}
+                  />
                 </div>
               </FadeIn>
             ))}

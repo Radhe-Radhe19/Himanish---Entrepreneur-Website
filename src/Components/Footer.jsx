@@ -276,10 +276,12 @@ export default function Footer() {
             </div>
             <div className="footer-contact-row">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a3e635" strokeWidth="2" style={{ flexShrink: 0, marginTop: 2 }}>
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
+                <path d="M4 21V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17" />
+                <path d="M2 21h16" />
+                <path d="M8 8h2" />
+                <path d="M8 12h2" />
               </svg>
-              <span className="footer-contact-text">India · Available Nationwide</span>
+              <Link to="/blogs" className="footer-contact-text">Blog</Link>
             </div>
           </div>
 

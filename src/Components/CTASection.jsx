@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function CTASection() {
   const bgRef = useRef(null);
@@ -144,8 +145,8 @@ export default function CTASection() {
           — Himanish Bhattacharya
         </span>
         <div data-aos="fade-up" data-aos-delay="180">
-          <a
-            href="mailto:himanishbhattacharya@email.com"
+          <Link
+            to="/contact"
             className="cta-btn"
             id="cta-consultation-btn"
           >
@@ -156,7 +157,7 @@ export default function CTASection() {
               <line x1="3" y1="10" x2="21" y2="10" />
             </svg>
             Book a Consultation
-          </a>
+          </Link>
           <span className="cta-sub">Free 30-min call · No obligations</span>
         </div>
       </div>

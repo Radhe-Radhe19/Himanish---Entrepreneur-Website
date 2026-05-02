@@ -75,6 +75,10 @@ export const HeroSection = () => {
           0%,100% { opacity: 0.35; }
           50%      { opacity: 0.9;  }
         }
+        @keyframes heroZoom {
+          0%   { transform: scale(1.12); }
+          100% { transform: scale(1.0);  }
+        }
         @keyframes cursorBlink {
           0%,49% { opacity: 1; } 50%,100% { opacity: 0; }
         }
@@ -143,7 +147,6 @@ export const HeroSection = () => {
           .mob-hero {
             position: relative;
             width: 100%;
-            min-height: 250vh;
             background: #0a0a0a;
           }
 
@@ -235,7 +238,7 @@ export const HeroSection = () => {
           .mob-spacer {
             position: relative;
             z-index: 1;
-            height: 50vh;
+            height: 10vh;
             /* Blend to dark so next section joins cleanly */
             background: linear-gradient(to bottom, transparent 0%, #0a0a0a 100%);
           }
@@ -333,9 +336,9 @@ export const HeroSection = () => {
               style={{ display: "flex", gap: "10px", flexWrap: "wrap",
                 marginBottom: "48px", justifyContent: "center" }}
             >
-              <a href="mailto:himanishbhattacharya@email.com" className="hbp">
+              <Link to="/contact" className="hbp">
                 Book a Session
-              </a>
+              </Link>
               <Link to="/story" className="hbs">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3" />
@@ -407,9 +410,9 @@ export const HeroSection = () => {
             </motion.p>
             <motion.div {...fadeUp(0.62)} style={{ display: "flex", gap: "12px",
               flexWrap: "wrap", marginBottom: "48px" }}>
-              <a href="mailto:himanishbhattacharya@email.com" className="hbp" id="hero-book-btn">
+              <Link to="/contact" className="hbp" id="hero-book-btn">
                 Book a Session
-              </a>
+              </Link>
               <Link to="/story" className="hbs" id="hero-story-btn">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3" />
@@ -420,25 +423,35 @@ export const HeroSection = () => {
 
           </motion.div>
 
-          {/* Portrait */}
+          {/* Portrait — premium cinematic treatment */}
           <motion.div
-            initial={{ opacity: 0, x: 48 }}
-            animate={ready ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 2.5 }}
-            style={{ position: "absolute", top: 0, right: 0, width: "52%", height: "100%",
-              zIndex: 8, display: "flex", alignItems: "flex-end", justifyContent: "center",
-              overflow: "hidden", pointerEvents: "none" }}
+            initial={{ opacity: 0 }}
+            animate={ready ? { opacity: 1 } : {}}
+            transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+            style={{ position: "absolute", top: 0, right: 0, width: "55%", height: "100%",
+              zIndex: 8, overflow: "hidden", pointerEvents: "none" }}
           >
-            <div style={{ position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse 75% 80% at 60% 35%, rgba(255,195,80,0.13) 0%, rgba(255,140,30,0.05) 50%, transparent 80%)" }} />
-            <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "32%",
-              background: "linear-gradient(to right, #0a0a0a 0%, transparent 100%)", zIndex: 3 }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "140px",
-              background: "linear-gradient(to top, #0a0a0a 0%, transparent 100%)", zIndex: 3 }} />
+            {/* Full-cover image with slow zoom animation */}
             <img src="/image(4).png" alt="Himanish Bhattacharya — Entrepreneur and Speaker"
-              style={{ position: "relative", zIndex: 2, height: "96%", width: "auto",
-                objectFit: "contain", objectPosition: "bottom center",
-                filter: "contrast(1.06) brightness(1.03) drop-shadow(0 28px 56px rgba(0,0,0,0.65)) drop-shadow(0 0 80px rgba(255,170,50,0.09))" }} />
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
+                objectFit: "cover", objectPosition: "top center",
+                animation: "heroZoom 8s ease-out forwards",
+                filter: "contrast(1.08) brightness(0.95) saturate(1.05)" }} />
+            {/* Warm cinematic glow overlay */}
+            <div style={{ position: "absolute", inset: 0,
+              background: "radial-gradient(ellipse 70% 60% at 55% 30%, rgba(255,195,80,0.12) 0%, transparent 70%)", zIndex: 2 }} />
+            {/* Left gradient — seamless blend to text */}
+            {/* <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "55%",
+              background: "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.9) 25%, rgba(10,10,10,0.5) 55%, transparent 100%)", zIndex: 3 }} /> */}
+            {/* Bottom gradient */}
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "200px",
+              background: "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.6) 40%, transparent 100%)", zIndex: 3 }} />
+            {/* Top gradient */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "120px",
+              background: "linear-gradient(to bottom, #0a0a0a 0%, transparent 100%)", zIndex: 3 }} />
+            {/* Subtle dark vignette for cinematic feel */}
+            <div style={{ position: "absolute", inset: 0,
+              background: "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(0,0,0,0.4) 100%)", zIndex: 4 }} />
           </motion.div>
 
           {/* Scroll hint */}

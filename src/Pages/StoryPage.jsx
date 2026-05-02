@@ -128,7 +128,7 @@ const TIMELINE = [
   {
     year: "2020", title: "JOINED COLLEGE", location: "Academics",
     description: "Joined college for mechatronics engineering, beginning a deep dive into the intersection of mechanics, electronics, and computing.",
-    images: ["/JoinedCollege.jpeg"],
+    images: ["/JoinedCollege (2).jpeg"],
   },
   {
     year: "2022 June", title: "TECHNICAL PROJECTS", location: "Mechatronics Domain",
@@ -163,7 +163,7 @@ const TIMELINE = [
   {
     year: "2026", title: "CORPIFT SCALES", location: "Jaipur",
     description: "Corpift officially becomes the fastest growing corporate gifting company in Jaipur, marking a massive milestone in the entrepreneurial journey.",
-    images: ["/Corpift_Scales (2).jpeg"],
+    images: ["/CorpiftScales.jpeg"],
   },
 ];
 
