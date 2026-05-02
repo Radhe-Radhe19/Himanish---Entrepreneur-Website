@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const WHATSAPP_NUMBER = "919999999999"; // replace with real number
+const WHATSAPP_NUMBER = "919057370100"; // replace with real number
 const EMAIL_ADDRESS   = "himanishbhattacharya@email.com";
 
 export const ContactPage = () => {
@@ -335,7 +335,7 @@ export const ContactPage = () => {
               <div>
                 <p className="cp-detail-label">WhatsApp</p>
                 <a href={waLink} target="_blank" rel="noreferrer" className="cp-detail-val">
-                  +91 99999 99999
+                  +91 9057370100
                 </a>
               </div>
             </div>
@@ -350,7 +350,7 @@ export const ContactPage = () => {
               </div>
               <div>
                 <p className="cp-detail-label">Location</p>
-                <span className="cp-detail-val" style={{ cursor: "default" }}>Mumbai, India</span>
+                <span className="cp-detail-val" style={{ cursor: "default" }}>Jaipur, India</span>
               </div>
             </div>
 
